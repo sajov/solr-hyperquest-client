@@ -12,7 +12,7 @@ var client = new Solr.Client({
     host: 'localhost',
     port: '8983',
     instance: 'solr',
-    core: 'gettingstarted'
+    core: 'schemaless'
 });
 
 // var client = new Solr.Client({
@@ -26,6 +26,35 @@ function inspect(data) {
     return util.inspect(data, false, 10, true);
 }
 
+/**
+ * @apiGroup 5 Core Admin
+ * @apiVersion 0.1.1
+ * @api {get} /model/create/core create Core
+ * @apiSampleRequest http://localhost:1337/solr/create/core
+ */
+describe('Client coreCreate schemaless', function() {
+    this.timeout(5000);
+    it('responseHeader should return status:0', function(done) {
+        client.coreCreate({
+                action: 'CREATE',
+                name: 'schemaless',
+                loadOnStartup: true,
+                instanceDir: 'schemaless',
+                configSet: 'data_driven_schema_configs',
+                config: 'solrconfig.xml',
+                schema: 'schema.xml',
+                // config: '../gettingstarted/config/solrconfig.xml',
+                // schema: '../gettingstarted/config/schema.xml',
+                dataDir: 'data'
+            },
+            function(err, data) {
+                // console.log('coreCreate'.yellow, err, inspect(data));
+                data.responseHeader.status.should.be.equal(0);
+                data.core.should.be.equal('schemaless');
+                done();
+            });
+    });
+});
 
 
 /**
