@@ -44,6 +44,7 @@ function inspect(data) {
  * @apiSampleRequest http://localhost:1337/solr/create/core
  */
 describe('Client coreCreate schemaless', function() {
+    this.timeout(5000);
     it('responseHeader should return status:0', function(done) {
         client.coreCreate({
                 action: 'CREATE',
