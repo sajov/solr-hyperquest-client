@@ -1,0 +1,1 @@
+# solr-hyperquest-client
