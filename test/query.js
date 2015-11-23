@@ -279,13 +279,13 @@ var test = [{
             },
         }
     }, {
-        test: 'q=date:[Tue Feb 04 2014 00:00:00 GMT+0100 (CET) TO Fri Feb 07 2014 00:00:00 GMT+0100 (CET)]',
+        test: 'q=date:[2/4/2014 TO 2/7/2014]',
         desc: ('test WATERLINE ! / not'.magenta + '  https://github.com/balderdashy/waterline-docs/blob/master/queries/query-language.md#date-ranges'.white),
         query: {
             where: {
                 date: {
-                    '>': new Date('2/4/2014'),
-                    '<': new Date('2/7/2014')
+                    '>': '2/4/2014',
+                    '<': '2/7/2014'
                 }
             },
         }
