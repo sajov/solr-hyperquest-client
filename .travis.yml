@@ -5,4 +5,4 @@ node_js:
   - "4"
   - "5"
 after_success: 'npm run coveralls'
-before_script: 'bin/./install-solr.sh 3.5.1'
+before_script: 'bin/install-solr.sh 3.5.1'
