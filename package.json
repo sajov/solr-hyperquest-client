@@ -4,8 +4,7 @@
     "description": "solr client on hyperquest",
     "main": "index.js",
     "scripts": {
-        "test": "make test",
-        "coverage": "istanbul cover _mocha -- -R spec"
+        "test": "istanbul cover _mocha test/query.js test/coreApi.js"
     },
     "repository": {
         "type": "git",
