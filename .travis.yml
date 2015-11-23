@@ -9,6 +9,7 @@ before_script:
 - bin/./install-solr.sh
 - npm install -g istanbul
 - npm install -g mocha
+- npm install -g coveralls
 script: make test
 after_success:
 - make coveralls
