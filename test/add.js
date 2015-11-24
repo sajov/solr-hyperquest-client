@@ -84,28 +84,3 @@ describe('Client ', function() {
         });
     });
 });
-
-
-var Solr = require('../index');
-var Query = Solr.Query;
-
-var client = new Solr.Client({
-    host: 'localhost',
-    port: '8983',
-    instance: 'solr',
-    core: 'schemaless'
-});
-
-var query = new Query({
-    where: {
-        name: 'foo'
-    },
-    skip: 0,
-    limit: 10,
-    sort: 'name DESC',
-    select: ['name']
-});
-client.find(query.queryUri, function(err, data) {
-    data.response.numFound.should.be.equal(1);
-    done();
-});

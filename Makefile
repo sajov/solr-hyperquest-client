@@ -10,7 +10,7 @@ test-mocha:
 	@NODE_ENV=test mocha \
 	    --timeout 2000 \
 		--reporter $(REPORTER) \
-		$(TESTS)
+		test/runner.js
 
 test-cov: istanbul
 
