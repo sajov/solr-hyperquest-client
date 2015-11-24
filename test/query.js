@@ -44,29 +44,30 @@ var modelFilter = {
 
 function testIt(tests) {
 
-    log('TESTIT', new Date());
+    describe('Test query builder', function() {
 
-    _.forEach(test, function(queryObj, key) {
+        _.forEach(test, function(queryObj, key) {
 
-        var query = _.defaults(queryObj.query, defaults);
-        var msg = util.inspect(queryObj, false, 1, true);
-        msg = queryObj.desc;
+            var query = _.defaults(queryObj.query, defaults);
+            var msg = util.inspect(queryObj, false, 1, true);
+            msg = queryObj.desc;
 
-        describe('TEST'.red.inverse + ' ' + msg, function() {
-            it(decodeURIComponent(queryObj.test
-                // queryObj.test + ' => ' + Qs.stringify(queryObj.query.where, {
-                //     arrayFormat: 'repeat'
-                // })
-            ), function(done) {
-                // log('DESCRIPTION', queryObj.desc);
-                // log('queryObj', queryObj);
-                // console.log(JSON.stringify(queryObj.query.where));
-                var QueryObject = new Query(queryObj.query);
-                log('QueryObject.queryUriFromated', QueryObject.queryUriFromated);
-                log('queryObj.test + extendedQuery', queryObj.test + (queryObj.extendedQuery || extendedQuery));
-                QueryObject.queryUriFromated.should.equal(queryObj.test + (queryObj.extendedQuery || extendedQuery));
+            describe('Test ' + msg, function() {
+                it(decodeURIComponent(queryObj.test
+                    // queryObj.test + ' => ' + Qs.stringify(queryObj.query.where, {
+                    //     arrayFormat: 'repeat'
+                    // })
+                ), function(done) {
+                    // log('DESCRIPTION', queryObj.desc);
+                    // log('queryObj', queryObj);
+                    // console.log(JSON.stringify(queryObj.query.where));
+                    var QueryObject = new Query(queryObj.query);
+                    log('QueryObject.queryUriFromated', QueryObject.queryUriFromated);
+                    log('queryObj.test + extendedQuery', queryObj.test + (queryObj.extendedQuery || extendedQuery));
+                    QueryObject.queryUriFromated.should.equal(queryObj.test + (queryObj.extendedQuery || extendedQuery));
 
-                done();
+                    done();
+                });
             });
         });
     });

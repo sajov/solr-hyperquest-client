@@ -15,7 +15,7 @@ test-mocha:
 test-cov: istanbul
 
 istanbul:
-	istanbul cover _mocha -- -R spec test
+	istanbul cover _mocha test/runner.js
 
 coveralls:
 	cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js

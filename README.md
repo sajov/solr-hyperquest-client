@@ -6,7 +6,7 @@
 [![NPM](https://nodei.co/npm/solr-hyperquest-client.png?downloads=true&stars=true)](https://nodei.co/npm/solr-hyperquest-client/)
 
 Build and used for a real world application (under heavy development).
-This client is also used for an up coming waterline adapter sails-solr.
+This client is also used for an up coming waterline adapter [sails-solr](https://github.com/sajov/sails-solr).
 
 ## Installation
 
@@ -42,11 +42,44 @@ client.get({name: foo},function(err, data) {});
 ```
 
 ## Features
+- 
+
+## Solr support
 - add
 - search
-- system Api
-- core Api
-- schema Api
+- [CoreAdmin API](https://cwiki.apache.org/confluence/display/solr/CoreAdmin+API)
+- [Schema API](https://cwiki.apache.org/confluence/display/solr/Schema+API)
+- replication API
+- [Collections API](https://cwiki.apache.org/confluence/display/solr/Collections+API)
+- [SystemInformationRequestHandlers](https://wiki.apache.org/solr/SystemInformationRequestHandlers)
+
+## Query builder (ORM)
+inspired by [waterline](https://github.com/balderdashy/waterline-docs/blob/master/queries/query-language.md#query-language-basics) 
+
+```js
+var Solr = require('solr-hyperquest-client');
+var Query = Solr.Query;
+
+var client = new Solr.Client({
+    host: 'localhost',
+    port: '8983',
+    instance: 'solr',
+    core: 'schemaless'
+});
+
+var query = new Query({
+    where: {
+        name: 'foo'
+    },
+    skip: 0,
+    limit: 10,
+    sort: 'name DESC',
+    select: ['name']
+});
+
+client.find(query.queryUri, function(err, data) {});
+```
+
 
 ##Documentation
 coming soon...
