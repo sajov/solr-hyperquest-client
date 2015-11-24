@@ -5,11 +5,10 @@
 
 [![NPM](https://nodei.co/npm/solr-hyperquest-client.png?downloads=true&stars=true)](https://nodei.co/npm/solr-hyperquest-client/)
 
-this is a early development state and under heavy development.
+Build and used for a real world application (under heavy development).
+This client is also used for an up coming waterline adapter sails-solr.
 
 ## Installation
-
-Add this line to your application's Gemfile:
 
 ```js
 npm install solr-hyperquest-client --save
@@ -43,7 +42,7 @@ client.get({name: foo},function(err, data) {});
 ```
 
 ## Features
-- update
+- add
 - search
 - system Api
 - core Api
