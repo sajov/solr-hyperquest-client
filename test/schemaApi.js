@@ -3,12 +3,7 @@ var util = require('util');
 var Solr = require('../index');
 var should = require('should');
 
-var client = new Solr.Client({
-    host: 'localhost',
-    port: '8983',
-    instance: 'solr',
-    core: 'schemaless'
-});
+var client = {};
 
 
 
@@ -18,6 +13,15 @@ function inspect(data) {
 
 
 describe('Test schema api', function() {
+
+    before(function() {
+        client = new Solr.Client({
+            host: 'localhost',
+            port: '8983',
+            instance: 'solr',
+            core: 'schemaless'
+        });
+    });
 
     describe('coreCreate schemaless', function() {
         this.timeout(5000);

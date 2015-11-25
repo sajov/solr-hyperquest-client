@@ -8,12 +8,7 @@ var util = require('util');
 var Solr = require('../index');
 var should = require('should');
 
-var client = new Solr.Client({
-    host: 'localhost',
-    port: '8983',
-    instance: 'solr',
-    core: 'schemaless'
-});
+var client = {};
 
 // var client = new Solr.Client({
 //   host: 'srv2.sajo-media.de',
@@ -33,6 +28,16 @@ function inspect(data) {
  * @apiSampleRequest http://localhost:1337/solr/create/core
  */
 describe('Test replication api', function() {
+
+    before(function() {
+        client = new Solr.Client({
+            host: 'localhost',
+            port: '8983',
+            instance: 'solr',
+            core: 'schemaless'
+        });
+    });
+
     describe('coreCreate schemaless', function() {
         this.timeout(5000);
         it('responseHeader should return status:0', function(done) {

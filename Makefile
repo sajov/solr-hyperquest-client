@@ -8,7 +8,7 @@ test: test-mocha
 
 test-mocha:
 	@NODE_ENV=test mocha \
-	    --timeout 2000 \
+	    --timeout 25000 \
 		--reporter $(REPORTER) \
 		test/runner.js
 
