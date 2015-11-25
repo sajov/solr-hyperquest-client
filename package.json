@@ -1,40 +1,40 @@
 {
-  "name": "solr-hyperquest-client",
-  "version": "1.0.0",
-  "description": "solr client on hyperquest",
-  "main": "index.js",
-  "scripts": {
-    "test": "istanbul cover _mocha test/query.js test/coreApi.js",
-    "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/sajov/solr-hyperquest-client.git"
-  },
-  "dependencies": {
-    "colors": "^1.1.0",
-    "hyperquest": "^1.2.0",
-    "lodash": "^3.10.1",
-    "qs": "^5.0.0",
-    "waterline-errors": "^0.10.1"
-  },
-  "devDependencies": {
-    "connect": "^3.4.0",
-    "coveralls": "^2.11.4",
-    "growl": "^1.8.1",
-    "istanbul": "^0.4.0",
-    "mocha-clean": "^1.0.0",
-    "serve-static": "^1.10.0",
-    "should": "^7.1.0"
-  },
-  "keywords": [
-    "solr",
-    "client"
-  ],
-  "author": "sajov",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/sajov/solr-hyperquest-client/issues"
-  },
-  "homepage": "https://github.com/sajov/solr-hyperquest-client#readme"
+    "name": "solr-hyperquest-client",
+    "version": "1.0.2",
+    "description": "solr client on hyperquest",
+    "main": "index.js",
+    "scripts": {
+        "test": "istanbul cover _mocha test/query.js test/coreApi.js",
+        "coveralls": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/sajov/solr-hyperquest-client.git"
+    },
+    "dependencies": {
+        "colors": "^1.1.0",
+        "hyperquest": "^1.2.0",
+        "lodash": "^3.10.1",
+        "qs": "^5.0.0",
+        "waterline-errors": "^0.10.1"
+    },
+    "devDependencies": {
+        "connect": "^3.4.0",
+        "coveralls": "^2.11.4",
+        "growl": "^1.8.1",
+        "istanbul": "^0.4.0",
+        "mocha-clean": "^1.0.0",
+        "serve-static": "^1.10.0",
+        "should": "^7.1.0"
+    },
+    "keywords": [
+        "solr",
+        "client"
+    ],
+    "author": "sajov",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/sajov/solr-hyperquest-client/issues"
+    },
+    "homepage": "https://github.com/sajov/solr-hyperquest-client#readme"
 }
