@@ -31,5 +31,8 @@ npm:
 check:
 	travis-lint .travis.yml
 
+after_script:
+	istanbul cover _mocha test/runner.js
+
 clean:
 	rm -rf ./coverage
