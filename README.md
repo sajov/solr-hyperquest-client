@@ -42,7 +42,9 @@ client.get({name: foo},function(err, data) {});
 ```
 
 ## Features
-- 
+- raw query get, post, put, delete
+- query builder
+- extendable
 
 ## Solr support
 - add
@@ -54,7 +56,7 @@ client.get({name: foo},function(err, data) {});
 - [SystemInformationRequestHandlers](https://wiki.apache.org/solr/SystemInformationRequestHandlers)
 
 ## Query builder (ORM)
-inspired by [waterline](https://github.com/balderdashy/waterline-docs/blob/master/queries/query-language.md#query-language-basics) 
+inspired by [waterline](https://github.com/balderdashy/waterline-docs/blob/master/queries/query-language.md#query-language-basics)
 
 ```js
 var Solr = require('solr-hyperquest-client');
