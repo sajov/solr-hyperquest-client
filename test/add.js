@@ -69,6 +69,26 @@ describe('Client ', function() {
         });
     });
 
+    describe('find', function() {
+        it('responseHeader response numFound return numFound:1', function(done) {
+            client.find('q=test', function(err, data) {
+                data.response.numFound.should.be.equal(1);
+                done();
+            });
+
+        });
+    });
+
+    describe('select', function() {
+        it('responseHeader response numFound return numFound:1', function(done) {
+            client.select('q=test', function(err, data) {
+                data.response.numFound.should.be.equal(1);
+                done();
+            });
+
+        });
+    });
+
     describe('coreUnload schemaless', function() {
         it('responseHeader should return status:0', function(done) {
             client.coreUnload({
