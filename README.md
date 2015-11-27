@@ -100,7 +100,6 @@ client.find(query.queryUri, function(err, response) {
 
 ## Documentation
 coming soon... 
-see tests for further
 
 ## Testing
 ```
