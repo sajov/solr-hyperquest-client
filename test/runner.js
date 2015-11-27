@@ -23,9 +23,11 @@ describe('solr-hyperquest-client test/', function() {
     });
 
 
-    importTest("query.js", './query');
+    importTest("queryBuilder.js", './queryBuilder');
 
     importTest("add.js", './add');
+
+    importTest("query.js", './query');
 
     importTest("coreApi.js", './coreApi');
 
@@ -34,5 +36,7 @@ describe('solr-hyperquest-client test/', function() {
     importTest("systemApi.js", './systemApi');
 
     importTest("replicationApi.js", './replicationApi');
+
+    importTest("shardingApi.js", './shardingApi');
 
 });
