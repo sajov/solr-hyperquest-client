@@ -24,8 +24,10 @@ describe('Client query', function() {
                     q: 'foo'
                 }
             });
-            query.should.equal('q=foo' + extendedQuery);
-            done();
+            client.find(query.queryUri, function(err, data) {
+                data.response.numFound.should.be.equal(1);
+                done();
+            });
         });
     });
 
@@ -36,8 +38,10 @@ describe('Client query', function() {
                     q: 'foo bar'
                 }
             });
-            query.should.equal('q=foo bar' + extendedQuery);
-            done();
+            client.find(query.queryUri, function(err, data) {
+                data.response.numFound.should.be.equal(1);
+                done();
+            });
         });
     });
 
@@ -48,8 +52,10 @@ describe('Client query', function() {
                     q: ['foo', 'bar']
                 }
             });
-            query.should.equal('q=foo bar' + extendedQuery);
-            done();
+            client.find(query.queryUri, function(err, data) {
+                data.response.numFound.should.be.equal(1);
+                done();
+            });
         });
     });
 
@@ -60,8 +66,10 @@ describe('Client query', function() {
                     q: ['foo', 'super bar']
                 }
             });
-            query.should.equal('q=foo "super bar"' + extendedQuery);
-            done();
+            client.find(query.queryUri, function(err, data) {
+                data.response.numFound.should.be.equal(1);
+                done();
+            });
         });
     });
 
@@ -69,7 +77,7 @@ describe('Client query', function() {
 
     describe('Query ', function() {
         it('{where:{q:[{name:"foo"},{"!":"super bar"}]}} => q=foo', function(done) {
-            var query = buildQuery({
+            var query = new Query({
                 where: {
                     q: [{
                         name: 'foo'
@@ -78,9 +86,10 @@ describe('Client query', function() {
                     }]
                 }
             });
-            query.should.equal('q=false false' + extendedQuery);
-            query.should.equal('q=name:foo !"super bar"' + extendedQuery);
-            done();
+            client.find(query.queryUri, function(err, data) {
+                data.response.numFound.should.be.equal(1);
+                done();
+            });
         });
     });
 
