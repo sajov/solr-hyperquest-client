@@ -8,6 +8,20 @@
 Build and used for a real world application (under heavy development).
 This client is also used for an up coming waterline adapter [sails-solr](https://github.com/sajov/sails-solr).
 
+## Features
+- raw query get, post, put, delete
+- [Query builder](https://github.com/sajov/solr-hyperquest-client#query-builder-orm)
+- extendable
+
+## Solr support
+- [Add Data](https://cwiki.apache.org/confluence/display/solr/Uploading+Data+with+Index+Handlers)
+- [Query](https://cwiki.apache.org/confluence/display/solr/The+Standard+Query+Parser)
+- [CoreAdmin API](https://cwiki.apache.org/confluence/display/solr/CoreAdmin+API)
+- [Schema API](https://cwiki.apache.org/confluence/display/solr/Schema+API)
+- [Index Replication](https://cwiki.apache.org/confluence/display/solr/Index+Replication)
+- [Collections API](https://cwiki.apache.org/confluence/display/solr/Collections+API)
+- [SystemInformationRequestHandlers](https://wiki.apache.org/solr/SystemInformationRequestHandlers)
+
 ## Installation
 ```js
 npm install solr-hyperquest-client --save
@@ -68,20 +82,6 @@ client.find('q=foo',function(err, response) {
    }
 });
 ```
-
-## Features
-- raw query get, post, put, delete
-- query builder
-- extendable
-
-## Solr support
-- add
-- search
-- [CoreAdmin API](https://cwiki.apache.org/confluence/display/solr/CoreAdmin+API)
-- [Schema API](https://cwiki.apache.org/confluence/display/solr/Schema+API)
-- replication API
-- [Collections API](https://cwiki.apache.org/confluence/display/solr/Collections+API)
-- [SystemInformationRequestHandlers](https://wiki.apache.org/solr/SystemInformationRequestHandlers)
 
 ## Query builder (ORM)
 inspired by [waterline](https://github.com/balderdashy/waterline-docs/blob/master/queries/query-language.md#query-language-basics)
