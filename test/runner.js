@@ -27,7 +27,6 @@ describe('solr-hyperquest-client test/', function() {
 
     importTest("add.js", './add');
 
-    importTest("query.js", './query');
 
     importTest("coreApi.js", './coreApi');
 
@@ -37,6 +36,8 @@ describe('solr-hyperquest-client test/', function() {
 
     importTest("replicationApi.js", './replicationApi');
 
-    importTest("shardingApi.js", './shardingApi');
+    importTest("query.js", './query');
+    //TODO: add sharding test
+    // importTest("shardingApi.js", './shardingApi');
 
 });
