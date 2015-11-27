@@ -28,8 +28,27 @@ var client = new Solr.Client({
     host: 'localhost',
     port: '8983',
     instance: 'solr',
-    core: 'gettingstarted'
+    core: 'schemaless'
 });
+
+// Create a solr core (optional you take complete control managing solr)
+client.coreCreate({
+        action: 'CREATE',
+        name: 'schemaless',
+        loadOnStartup: true,
+        instanceDir: 'schemaless',
+        configSet: 'data_driven_schema_configs',
+        config: 'solrconfig.xml',
+        schema: 'schema.xml',
+        dataDir: 'data'
+    },
+    function(err, data) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log('Solr response:', response);
+        }
+    });
 
 // Add a new document
 client.add({name: 'foo'},function(err,response){
