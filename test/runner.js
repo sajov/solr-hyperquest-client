@@ -41,23 +41,3 @@ describe('solr-hyperquest-client test/', function() {
     // importTest("shardingApi.js", './shardingApi');
 
 });
-
-
-
-client.coreCreate({
-        action: 'CREATE',
-        name: 'schemaless',
-        loadOnStartup: true,
-        instanceDir: 'schemaless',
-        configSet: 'data_driven_schema_configs',
-        config: 'solrconfig.xml',
-        schema: 'schema.xml',
-        dataDir: 'data'
-    },
-    function(err, data) {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log('Solr response:', response);
-        }
-    });
