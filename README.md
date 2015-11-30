@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/sajov/solr-hyperquest-client.svg?branch=master)](https://travis-ci.org/sajov/solr-hyperquest-client)
 [![Coverage Status](https://coveralls.io/repos/sajov/solr-hyperquest-client/badge.svg?branch=master&service=github)](https://coveralls.io/github/sajov/solr-hyperquest-client?branch=master)
+[![Dependency Status](https://david-dm.org/sajov/solr-hyperquest-client.svg)](https://david-dm.org/jsdoc2md/solr-hyperquest-client)
 
 [![NPM](https://nodei.co/npm/solr-hyperquest-client.png?downloads=true&stars=true)](https://nodei.co/npm/solr-hyperquest-client/)
 
@@ -118,7 +119,7 @@ client.find(query.queryUri, function(err, response) {
 
 
 ## Documentation
-coming soon... 
+coming soon...
 
 ## Testing
 ```
