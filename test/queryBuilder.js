@@ -78,13 +78,13 @@ var test = [{
         desc: 'empty q',
         query: {}
     }, {
-        test: 'q=foo',
+        test: 'q="foo"',
         desc: 'simple where string',
         query: {
             where: 'foo'
         }
     }, {
-        test: 'q=foo',
+        test: 'q="foo"',
         desc: 'nested where q',
         query: {
             where: {
@@ -92,7 +92,7 @@ var test = [{
             }
         }
     }, {
-        test: 'q=name:sajo+age:23',
+        test: 'q=name:"sajo"+age:23',
         desc: 'where as object',
         query: {
             where: {
@@ -101,7 +101,7 @@ var test = [{
             }
         }
     }, {
-        test: 'q=!name:sajo',
+        test: 'q=!name:"sajo"',
         desc: 'where IS NOT',
         query: {
             where: {
@@ -111,7 +111,7 @@ var test = [{
             }
         }
     }, {
-        test: 'q=name:sajo+age:23',
+        test: 'q=name:"sajo"+age:23',
         desc: 'where.q as object',
         query: {
             where: {
@@ -131,7 +131,7 @@ var test = [{
             }
         }
     }, {
-        test: 'q=name:walter+state:new mexico',
+        test: 'q=name:"walter"+state:"new mexico"',
         desc: ('test WATERLINE Key Pairs'.magenta + '  https://github.com/balderdashy/waterline-docs/blob/master/queries/query-language.md#key-pairs'.white),
         query: {
             where: {
@@ -150,7 +150,7 @@ var test = [{
             },
         }
     }, {
-        test: 'q=!name:Walter+!name:Skyler',
+        test: 'q=!name:"Walter"+!name:"Skyler"',
         desc: ('test WATERLINE Not-In Pairs'.magenta + '  https://github.com/balderdashy/waterline-docs/blob/master/queries/query-language.md#modified-pairs'.white),
         query: {
             where: {
@@ -160,7 +160,7 @@ var test = [{
             },
         }
     }, {
-        test: 'q=(name:walter OR occupation:teacher)',
+        test: 'q=(name:"walter" OR occupation:"teacher")',
         desc: ('test WATERLINE Or Pairs'.magenta + '  https://github.com/balderdashy/waterline-docs/blob/master/queries/query-language.md#or-pairs'.white),
         query: {
             where: {
@@ -295,7 +295,7 @@ var test = [{
 
 
     {
-        test: 'q=foo',
+        test: 'q="foo"',
         desc: 'simple string without field',
         query: {
             where: 'foo'
@@ -315,7 +315,7 @@ var test = [{
     },
 
     {
-        test: 'q=foo+bar',
+        test: 'q="foo"+"bar"',
         desc: 'simple string array without field reference',
         query: {
             where: ['foo', 'bar']
@@ -337,7 +337,7 @@ var test = [{
     },
 
     {
-        test: 'q=name:foo+!super bar',
+        test: 'q=name:"foo"+!"super bar"',
         desc: 'mixed field referenced and not',
         query: {
             where: {
@@ -679,7 +679,7 @@ var test = [{
             // select: ['name']
         }
     }, {
-        test: 'q=name:foo+model:modelA&fq=model:modelA',
+        test: 'q=name:"foo"+model:"modelA"&fq=model:"modelA"',
         desc: ' test Or Pairs COMPLEX multivalue on same field',
         query: {
             where: {
