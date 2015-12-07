@@ -82,7 +82,8 @@ describe('Client query', function() {
                 }
             });
             client.find(query.queryUri, function(err, data) {
-                data.response.numFound.should.be.equal(3);
+
+                data.response.numFound.should.be.equal(1);
                 done();
             });
         });
@@ -96,7 +97,8 @@ describe('Client query', function() {
                 }
             });
             client.find(query.queryUri, function(err, data) {
-                data.response.numFound.should.be.equal(3);
+              // console.log(data);
+                data.response.numFound.should.be.equal(2);
                 done();
             });
         });
@@ -110,7 +112,8 @@ describe('Client query', function() {
                 }
             });
             client.find(query.queryUri, function(err, data) {
-                data.response.numFound.should.be.equal(3);
+              // console.log(data);
+                data.response.numFound.should.be.equal(1);
                 done();
             });
         });

@@ -62,8 +62,8 @@ function testIt(tests) {
                     // log('queryObj', queryObj);
                     // console.log(JSON.stringify(queryObj.query.where));
                     var QueryObject = new Query(queryObj.query);
-                    log('QueryObject.queryUriFromated', QueryObject.queryUriFromated);
-                    log('queryObj.test + extendedQuery', queryObj.test + (queryObj.extendedQuery || extendedQuery));
+                    // log('QueryObject.queryUriFromated', QueryObject.queryUriFromated);
+                    // log('queryObj.test + extendedQuery', queryObj.test + (queryObj.extendedQuery || extendedQuery));
                     QueryObject.queryUriFromated.should.equal(queryObj.test + (queryObj.extendedQuery || extendedQuery));
 
                     done();
@@ -122,7 +122,7 @@ var test = [{
             }
         }
     }, {
-        test: 'q=*:*&sort=name+desc',
+        test: 'q=*:*&sort=name desc',
         desc: 'test simple sort',
         query: {
             where: {},
@@ -172,7 +172,7 @@ var test = [{
             },
         }
     }, {
-        test: 'q=age:23+(name:walter OR occupation:teacher)',
+        test: 'q=age:23+(name:"walter" OR occupation:"teacher")',
         desc: ('test WATERLINE Or Pairs COMPLEX'.magenta + '  https://github.com/balderdashy/waterline-docs/blob/master/queries/query-language.md#or-pairs'.white),
         query: {
             where: {
@@ -301,7 +301,7 @@ var test = [{
             where: 'foo'
         }
     }, {
-        test: 'q=!name:sajo&fl=name',
+        test: 'q=!name:"sajo"&fl=name',
         desc: ' not and select',
         extendedQuery: '&start=0&rows=30',
         query: {
@@ -321,7 +321,7 @@ var test = [{
             where: ['foo', 'bar']
         }
     }, {
-        test: 'q=foo+super+bar',
+        test: 'q="foo"+"super bar"',
         desc: 'simple string multi term array without field reference',
         query: {
             where: ['foo', 'super bar']
@@ -375,7 +375,7 @@ var test = [{
             }
         }
     }, {
-        test: 'q=!bade',
+        test: 'q=!"bade"',
         desc: ' not without field',
         query: {
             where: {
@@ -383,7 +383,7 @@ var test = [{
             }
         }
     }, {
-        test: 'q=name:foo',
+        test: 'q=name:"foo"',
         desc: 'simple field value',
         query: {
             where: {
@@ -401,7 +401,7 @@ var test = [{
             }
         }
     }, {
-        test: 'q=name:Walter+name:Skyler',
+        test: 'q=name:"Walter"+name:"Skyler"',
         desc: ' field with Array of values' + ' TODO: what field:(val) or field:val[0]+field:val[1]'.cyan,
         query: {
             where: {
@@ -412,7 +412,7 @@ var test = [{
 
 
     {
-        test: 'q=!name:Walter+!name:Skyler',
+        test: 'q=!name:"Walter"+!name:"Skyler"',
         desc: ' not Array',
         query: {
             where: {
@@ -422,7 +422,7 @@ var test = [{
             }
         }
     }, {
-        test: 'q=(name:walter OR occupation:teacher)',
+        test: 'q=(name:"walter" OR occupation:"teacher")',
         desc: ('test WTF     '.white),
         query: {
             where: {
@@ -434,7 +434,7 @@ var test = [{
             }
         }
     }, {
-        test: 'q=(name:walter OR occupation:teacher)',
+        test: 'q=(name:"walter" OR occupation:"teacher")',
         desc: ('test WATERLINE Or Pairs COMPLEX'.magenta + '  https://github.com/balderdashy/waterline-docs/blob/master/queries/query-language.md#or-pairs'.white),
         query: {
             where: {
@@ -446,7 +446,7 @@ var test = [{
             },
         }
     }, {
-        test: 'q=(name:walter OR occupation:teacher)',
+        test: 'q=(name:"walter" OR occupation:"teacher")',
         desc: ('test WATERLINE Or Pairs COMPLEX'.magenta + '  https://github.com/balderdashy/waterline-docs/blob/master/queries/query-language.md#or-pairs'.white),
         query: {
             where: {
@@ -458,7 +458,7 @@ var test = [{
             },
         }
     }, {
-        test: 'q=!name:Walter+!name:Skyler',
+        test: 'q=!name:"Walter"+!name:"Skyler"',
         desc: ' not with array',
         query: {
             where: {
@@ -518,7 +518,7 @@ var test = [{
             }
         }
     }, {
-        test: 'q=!name:foo',
+        test: 'q=!name:"foo"',
         desc: 'not contain',
         query: {
             where: {
@@ -611,7 +611,7 @@ var test = [{
 
 
     {
-        test: 'q=name:foo&sort=name+asc',
+        test: 'q=name:"foo"&sort=name asc',
         desc: 'sort with 1 as asc',
         query: {
             where: {
@@ -624,7 +624,7 @@ var test = [{
     },
 
     {
-        test: 'q=name:foo&sort=name+desc',
+        test: 'q=name:"foo"&sort=name desc',
         desc: 'sort with -1 as desc',
         query: {
             where: {
@@ -635,14 +635,14 @@ var test = [{
             }
         }
     }, {
-        test: 'q=foo&sort=name+desc',
+        test: 'q="foo"&sort=name desc',
         desc: 'sort as complete string ',
         query: {
             where: 'foo',
             sort: 'name desc'
         }
     }, {
-        test: 'q=name:foo&sort=name+asc,age+desc',
+        test: 'q=name:"foo"&sort=name asc,age desc',
         desc: 'sort multiple ',
         query: {
             where: {
@@ -654,7 +654,7 @@ var test = [{
             }
         }
     }, {
-        test: 'q=name:foo&fl=name',
+        test: 'q=name:"foo"&fl=name',
         desc: ' test SELECT as array',
         extendedQuery: '&start=0&rows=30',
         query: {
