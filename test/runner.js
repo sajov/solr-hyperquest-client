@@ -37,6 +37,10 @@ describe('solr-hyperquest-client test/', function() {
 
     importTest("replicationApi.js", './replicationApi');
 
+    importTest("config.js", './config');
+
+    // importTest("configSet.js", './configSet');
+
     //TODO: add sharding test
     // importTest("shardingApi.js", './shardingApi');
 
