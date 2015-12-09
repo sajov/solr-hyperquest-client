@@ -46,15 +46,15 @@ describe('Test configSet', function() {
 
 
 
-    describe('get config list', function() {
+    describe('Managed Schema', function() {
         this.timeout(5000);
-        it('responseHeader should return status:0', function(done) {
+        it('schemaFactory should be ManagedIndexSchemaFactory', function(done) {
                     // 'configSetProp.name':value
             client.getConfig({
                 },
                 function(err, data) {
-                    console.log('get config'.yellow, err, inspect(data));
-                    // data.responseHeader.status.should.be.equal(0);
+                    // console.log('get config'.yellow, err, inspect(data.config.schemaFactory));
+                    data.config.schemaFactory.class.should.be.equal('ManagedIndexSchemaFactory');
                     // data.core.should.be.equal('schemaless');
                     done();
                 });
