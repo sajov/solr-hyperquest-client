@@ -218,6 +218,31 @@ describe('Test schema api', function() {
                 });
         });
     });
+
+    describe('getSchemaQueryParserDefaultOperator', function() {
+        it('get defaultOperator should return status:0', function(done) {
+            client.getSchemaQueryParserDefaultOperator({},
+                function(err, data) {
+                    console.log(data)
+                    data.responseHeader.status.should.be.equal(0);
+                    done();
+                });
+        });
+    });
+
+    // describe('setSchemaQueryParserDefaultOperator', function() {
+    //     it('set defaultOperator should return status:0', function(done) {
+    //         client.setSchemaQueryParserDefaultOperator({
+    //                 "defaultOperator": 'AND'
+    //             },
+    //             function(err, data) {
+    //                 console.log(data)
+    //                 data.responseHeader.status.should.be.equal(0);
+    //                 done();
+    //             });
+    //     });
+    // });
+
     describe('setSchemaFields', function() {
         it('add schema field should return status:0', function(done) {
             client.setSchemaFields(
