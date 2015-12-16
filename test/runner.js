@@ -18,7 +18,7 @@ describe('solr-hyperquest-client test/', function() {
             host: 'localhost',
             port: '8983',
             instance: 'solr',
-            core: 'schemaless'
+            core: 'schemaless',
         });
     });
 

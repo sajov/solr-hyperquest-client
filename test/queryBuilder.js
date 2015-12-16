@@ -92,7 +92,7 @@ var test = [{
             }
         }
     }, {
-        test: 'q=name:"sajo"+age:23',
+        test: 'q=name:"sajo" AND age:23',
         desc: 'where as object',
         query: {
             where: {
@@ -111,7 +111,7 @@ var test = [{
             }
         }
     }, {
-        test: 'q=name:"sajo"+age:23',
+        test: 'q=name:"sajo" AND age:23',
         desc: 'where.q as object',
         query: {
             where: {
@@ -131,7 +131,7 @@ var test = [{
             }
         }
     }, {
-        test: 'q=name:"walter"+state:"new mexico"',
+        test: 'q=name:"walter" AND state:"new mexico"',
         desc: ('test WATERLINE Key Pairs'.magenta + '  https://github.com/balderdashy/waterline-docs/blob/master/queries/query-language.md#key-pairs'.white),
         query: {
             where: {
@@ -150,7 +150,7 @@ var test = [{
             },
         }
     }, {
-        test: 'q=!name:"Walter"+!name:"Skyler"',
+        test: 'q=!name:"Walter" AND !name:"Skyler"',
         desc: ('test WATERLINE Not-In Pairs'.magenta + '  https://github.com/balderdashy/waterline-docs/blob/master/queries/query-language.md#modified-pairs'.white),
         query: {
             where: {
@@ -172,7 +172,7 @@ var test = [{
             },
         }
     }, {
-        test: 'q=age:23+(name:"walter" OR occupation:"teacher")',
+        test: 'q=age:23 AND (name:"walter" OR occupation:"teacher")',
         desc: ('test WATERLINE Or Pairs COMPLEX'.magenta + '  https://github.com/balderdashy/waterline-docs/blob/master/queries/query-language.md#or-pairs'.white),
         query: {
             where: {
@@ -195,7 +195,7 @@ var test = [{
             },
         }
     }, {
-        test: 'q=age:[* TO 30]+posts:[* TO 30]',
+        test: 'q=age:[* TO 30] AND posts:[* TO 30]',
         desc: ('test WATERLINE < / lessThan'.magenta + '  https://github.com/balderdashy/waterline-docs/blob/master/queries/query-language.md#--lessthan'.white),
         query: {
             where: {
@@ -208,7 +208,7 @@ var test = [{
             },
         }
     }, {
-        test: 'q=age:[30 TO *]+posts:[30 TO *]+threads:[30 TO *]',
+        test: 'q=age:[30 TO *] AND posts:[30 TO *] AND threads:[30 TO *]',
         desc: ('test WATERLINE < / lessThan COMPLEX'.magenta + '  https://github.com/balderdashy/waterline-docs/blob/master/queries/query-language.md#--lessthan'.white),
         query: {
             where: {
@@ -264,7 +264,7 @@ var test = [{
             },
         }
     }, {
-        test: 'q=class:*can+alias:*mer*+test:*mer*',
+        test: 'q=class:*can AND alias:*mer* AND test:*mer*',
         desc: ('test WATERLINE endsWith'.magenta + '  https://github.com/balderdashy/waterline-docs/blob/master/queries/query-language.md#endswith'.white),
         query: {
             where: {
@@ -315,13 +315,13 @@ var test = [{
     },
 
     {
-        test: 'q="foo"+"bar"',
+        test: 'q="foo" AND "bar"',
         desc: 'simple string array without field reference',
         query: {
             where: ['foo', 'bar']
         }
     }, {
-        test: 'q="foo"+"super bar"',
+        test: 'q="foo" AND "super bar"',
         desc: 'simple string multi term array without field reference',
         query: {
             where: ['foo', 'super bar']
@@ -337,7 +337,7 @@ var test = [{
     },
 
     {
-        test: 'q=name:"foo"+!"super bar"',
+        test: 'q=name:"foo" AND !"super bar"',
         desc: 'mixed field referenced and not',
         query: {
             where: {
@@ -401,7 +401,7 @@ var test = [{
             }
         }
     }, {
-        test: 'q=name:"Walter"+name:"Skyler"',
+        test: 'q=name:"Walter" AND name:"Skyler"',
         desc: ' field with Array of values' + ' TODO: what field:(val) or field:val[0]+field:val[1]'.cyan,
         query: {
             where: {
@@ -412,7 +412,7 @@ var test = [{
 
 
     {
-        test: 'q=!name:"Walter"+!name:"Skyler"',
+        test: 'q=!name:"Walter" AND !name:"Skyler"',
         desc: ' not Array',
         query: {
             where: {
@@ -458,7 +458,7 @@ var test = [{
             },
         }
     }, {
-        test: 'q=!name:"Walter"+!name:"Skyler"',
+        test: 'q=!name:"Walter" AND !name:"Skyler"',
         desc: ' not with array',
         query: {
             where: {
@@ -679,7 +679,7 @@ var test = [{
             // select: ['name']
         }
     }, {
-        test: 'q=name:"foo"+model:"modelA"&fq=model:"modelA"',
+        test: 'q=name:"foo" AND model:"modelA"&fq=model:"modelA"',
         desc: ' test Or Pairs COMPLEX multivalue on same field',
         query: {
             where: {
