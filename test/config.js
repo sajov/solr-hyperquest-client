@@ -45,7 +45,6 @@ describe('Test configSet', function() {
     });
 
 
-
     describe('Managed Schema', function() {
         this.timeout(5000);
         it('schemaFactory should be ManagedIndexSchemaFactory', function(done) {

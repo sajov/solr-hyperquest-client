@@ -23,23 +23,25 @@ describe('solr-hyperquest-client test/', function() {
     });
 
 
-    importTest("queryBuilder.js", './queryBuilder');
+    // importTest("queryBuilder.js", './queryBuilder');
 
-    importTest("query.js", './query');
+    // importTest("query.js", './query');
 
-    importTest("add.js", './add');
+    // importTest("add.js", './add');
 
-    importTest("coreApi.js", './coreApi');
+    // importTest("coreApi.js", './coreApi');
 
-    importTest("schemaApi.js", './schemaApi');
+    // importTest("schemaApi.js", './schemaApi');
 
-    importTest("systemApi.js", './systemApi');
+    // importTest("systemApi.js", './systemApi');
 
-    importTest("replicationApi.js", './replicationApi');
+    // importTest("replicationApi.js", './replicationApi');
 
-    importTest("config.js", './config');
+    // importTest("config.js", './config');
 
     // importTest("configSet.js", './configSet');
+
+    importTest("configApi.js", './configApi');
 
     //TODO: add sharding test
     // importTest("shardingApi.js", './shardingApi');
