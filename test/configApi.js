@@ -201,21 +201,93 @@ describe('Test solrconfig', function() {
     });
 
 
+//http://localhost:8983/solr/schemaless/suggest?q=f&wt=json&indent=true&suggest.build=true
+
+     // <searchComponent name="suggest" class="solr.SuggestComponent">
+     //    <lst name="suggester">
+     //      <str name="name">mySuggester</str>
+     //      <str name="lookupImpl">FuzzyLookupFactory</str>
+     //      <str name="dictionaryImpl">DocumentDictionaryFactory</str>
+     //      <str name="field">cat</str>
+     //      <str name="weightField">price</str>
+     //      <str name="suggestAnalyzerFieldType">string</str>
+     //      <str name="buildOnStartup">false</str>
+     //    </lst>
+     //  </searchComponent>
+
+
+
+     describe('add-searchcomponent', function() {
+      this.timeout(5000);
+      it('responseHeader should return status:0', function(done) {
+      // console.log('client',client.solrconfig);
+        client.myconfig({
+              "add-searchcomponent":{
+                // "suggest":{
+                  "name":"suggest",
+                  "class":"solr.SuggestComponent",
+                  "suggester":{
+                    "name":"mySuggester",
+                    "lookupImpl":"FuzzyLookupFactory",
+                    "dictionaryImpl":"DocumentDictionaryFactory",
+                    "field":"name",
+                    "suggestAnalyzerFieldType":"string",
+                    "buildOnStartup":"true"}
+                  // }
+
+              //   "name":"suggester",
+              //   "class":"solr.SuggestComponent",
+              //   "lookupImpl":"FuzzyLookupFactory",
+              //   "dictionaryImpl":"DocumentDictionaryFactory",
+              //   "field":"first_name",
+              //   "suggestAnalyzerFieldType":"string",
+              //   "buildOnStartup":"true",
+              }
+        }, function(err, response){
+          console.log(err,response,inspect(response));
+          done();
+        })
+      });
+    });
+
+ //  <requestHandler name="/suggest" class="solr.SearchHandler"
+ //                  startup="lazy" >
+ //    <lst name="defaults">
+ //      <str name="suggest">true</str>
+ //      <str name="suggest.count">10</str>
+ //    </lst>
+ //    <arr name="components">
+ //      <str>suggest</str>
+ //    </arr>
+ //  </requestHandler>
+ //
+ //
+
     describe('add-requesthandler', function() {
       this.timeout(5000);
       it('responseHeader should return status:0', function(done) {
       // console.log('client',client.solrconfig);
         client.myconfig({
           "add-requesthandler" : {
-            "name": "/suggest",
-            "class":"solr.SuggestComponent",
-            "lookupImpl":"lookupImpl",
-            // "dictionaryImpl":"DocumentDictionaryFactory",
-            "field":"name",
-            // "weightField":"weightField",
-            "suggestAnalyzerFieldType":"string",
-            "buildOnStartup":"false",
-          },
+              // "/suggest":{
+        "startup":"lazy",
+        "name":"/suggest",
+        "class":"solr.SearchHandler",
+        "defaults":{
+          "suggest":"true",
+          "suggest.count":"10",
+          "suggest.dictionary":"mySuggester"},
+        "components":["suggest","spellcheck"]}
+
+            // "name": "/suggest",
+            // "class":"solr.SearchHandler",
+            // "defaults": {
+            //   "suggest":"true",
+            //   "suggest.count":10,
+            //   "suggest.dictionary":"suggester"
+            // },
+            // "components":["suggester"],
+          // },
         }, function(err, response){
           console.log(err,response,inspect(response));
           done();
@@ -235,6 +307,7 @@ describe('Test solrconfig', function() {
 //     <str name="buildOnStartup">false</str>
 //   </lst>
 // </searchComponent>
+
 
     // describe('Client coreUnload schemaless', function() {
     //     it('responseHeader should return status:0', function(done) {
