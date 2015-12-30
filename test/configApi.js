@@ -201,126 +201,110 @@ describe('Test solrconfig', function() {
     });
 
 
-//http://localhost:8983/solr/schemaless/suggest?q=f&wt=json&indent=true&suggest.build=true
-
-     // <searchComponent name="suggest" class="solr.SuggestComponent">
-     //    <lst name="suggester">
-     //      <str name="name">mySuggester</str>
-     //      <str name="lookupImpl">FuzzyLookupFactory</str>
-     //      <str name="dictionaryImpl">DocumentDictionaryFactory</str>
-     //      <str name="field">cat</str>
-     //      <str name="weightField">price</str>
-     //      <str name="suggestAnalyzerFieldType">string</str>
-     //      <str name="buildOnStartup">false</str>
-     //    </lst>
-     //  </searchComponent>
-
-
-
      describe('add-searchcomponent', function() {
-      this.timeout(5000);
-      it('responseHeader should return status:0', function(done) {
-      // console.log('client',client.solrconfig);
-        client.myconfig({
-              "add-searchcomponent":{
-                // "suggest":{
-                  "name":"suggest",
-                  "class":"solr.SuggestComponent",
-                  "suggester":{
-                    "name":"mySuggester",
-                    "lookupImpl":"FuzzyLookupFactory",
-                    "dictionaryImpl":"DocumentDictionaryFactory",
-                    "field":"name",
-                    "suggestAnalyzerFieldType":"string",
-                    "buildOnStartup":"true"}
-                  // }
+          this.timeout(5000);
+          it('responseHeader should return status:0', function(done) {
+          // console.log('client',client.solrconfig);
+            client.solrconfig({
+                  "add-searchcomponent":{
+                    // "suggest":{
+                      "name":"suggest",
+                      "class":"solr.SuggestComponent",
+                      "suggester":{
+                        "name":"suggest",
+                        "lookupImpl":"FuzzyLookupFactory",
+                        "dictionaryImpl":"DocumentDictionaryFactory",
+                        "field":"name",
+                        "suggestAnalyzerFieldType":"string",
+                        "buildOnStartup":"true"}
+                  }
+            }, function(err, response){
+                if(err) console.log(err);
+              // console.log(err,response,inspect(response));
+              done();
+            })
+          });
+        });
 
-              //   "name":"suggester",
-              //   "class":"solr.SuggestComponent",
-              //   "lookupImpl":"FuzzyLookupFactory",
-              //   "dictionaryImpl":"DocumentDictionaryFactory",
-              //   "field":"first_name",
-              //   "suggestAnalyzerFieldType":"string",
-              //   "buildOnStartup":"true",
-              }
-        }, function(err, response){
-          console.log(err,response,inspect(response));
-          done();
-        })
-      });
+        //http://localhost:8983/solr/schemaless/suggest?q=foa%20bar&wt=json&indent=true&debugQuery=true&spellcheck.count=10&spellcheck.extendedResults=true&spellcheck.collate=true&spellcheck.maxCollations=10&spellcheck.maxCollationTries=10&spellcheck.accuracy=0.003
+        describe('add-requesthandler', function() {
+          this.timeout(5000);
+          it('responseHeader should return status:0', function(done) {
+              // console.log('client',client.solrconfig);
+              client.solrconfig({
+                "add-requesthandler" : {
+                    "startup":"lazy",
+                    "name":"/suggest",
+                    "class":"solr.SearchHandler",
+                    "defaults":{
+                      "suggest":true,
+                      "suggest.count":10,
+                      "suggest.dictionary":"suggest",
+                      "spellcheck":"on",
+                      "spellcheck.count":10,
+                      "spellcheck.extendedResults":true,
+                      "spellcheck.collate":true,
+                      "spellcheck.maxCollations":10,
+                      "spellcheck.maxCollationTries":10,
+                      "spellcheck.accuracy":0.003,
+                    },
+                    "components":["spellcheck","suggest"]
+                  }
+              }, function(err, response){
+                if(err) console.log(err);
+                // console.log(err,response,inspect(response));
+                done();
+              })
+          });
+        });
+
+
+    describe('delete-requesthandler', function() {
+          this.timeout(5000);
+          it('responseHeader should return status:0', function(done) {
+              // console.log('client',client.solrconfig);
+              client.solrconfig({
+                "delete-requesthandler" : "/suggest"
+              }, function(err, response){
+                if(err) console.log(err);
+                // console.log(err,response,inspect(response));
+                done();
+              })
+          });
+        });
+
+        describe('delete-searchcomponent', function() {
+          this.timeout(5000);
+          it('responseHeader should return status:0', function(done) {
+              // console.log('client',client.solrconfig);
+              client.solrconfig({
+                "delete-searchcomponent" : "suggest"
+              }, function(err, response){
+                // console.log(err,response,inspect(response));
+                // done();
+                client.getConfig({}, function(e, r){
+                  if(err) console.log(e);
+                  // console.log(e,inspect(r));
+                  done();
+                })
+              });
+          });
+        });
+
+
+
+    describe('Client coreUnload schemaless', function() {
+        it('responseHeader should return status:0', function(done) {
+            client.coreUnload({
+                    action: 'UNLOAD',
+                    'core': 'schemaless',
+                    'deleteIndex': true
+                },
+                function(err, data) {
+                    // console.log('coreUnload'.yellow,err,inspect(data));
+                    data.responseHeader.status.should.be.equal(0);
+                    done();
+                });
+        });
     });
-
- //  <requestHandler name="/suggest" class="solr.SearchHandler"
- //                  startup="lazy" >
- //    <lst name="defaults">
- //      <str name="suggest">true</str>
- //      <str name="suggest.count">10</str>
- //    </lst>
- //    <arr name="components">
- //      <str>suggest</str>
- //    </arr>
- //  </requestHandler>
- //
- //
-
-    describe('add-requesthandler', function() {
-      this.timeout(5000);
-      it('responseHeader should return status:0', function(done) {
-      // console.log('client',client.solrconfig);
-        client.myconfig({
-          "add-requesthandler" : {
-              // "/suggest":{
-        "startup":"lazy",
-        "name":"/suggest",
-        "class":"solr.SearchHandler",
-        "defaults":{
-          "suggest":"true",
-          "suggest.count":"10",
-          "suggest.dictionary":"mySuggester"},
-        "components":["suggest","spellcheck"]}
-
-            // "name": "/suggest",
-            // "class":"solr.SearchHandler",
-            // "defaults": {
-            //   "suggest":"true",
-            //   "suggest.count":10,
-            //   "suggest.dictionary":"suggester"
-            // },
-            // "components":["suggester"],
-          // },
-        }, function(err, response){
-          console.log(err,response,inspect(response));
-          done();
-        })
-      });
-    });
-
-
-//     <searchComponent name="suggest" class="solr.SuggestComponent">
-//   <lst name="suggester">
-//     <str name="name">mySuggester</str>
-//     <str name="lookupImpl">lookupImpl</str>
-//     <str name="dictionaryImpl">DocumentDictionaryFactory</str>
-//     <str name="field">cat</str>
-//     <str name="weightField">price</str>
-//     <str name="suggestAnalyzerFieldType">string</str>
-//     <str name="buildOnStartup">false</str>
-//   </lst>
-// </searchComponent>
-
-
-    // describe('Client coreUnload schemaless', function() {
-    //     it('responseHeader should return status:0', function(done) {
-    //         client.coreUnload({
-    //                 action: 'UNLOAD',
-    //                 'core': 'schemaless',
-    //                 'deleteIndex': true
-    //             },
-    //             function(err, data) {
-    //                 // console.log('coreUnload'.yellow,err,inspect(data));
-    //                 data.responseHeader.status.should.be.equal(0);
-    //                 done();
-    //             });
-    //     });
-    // });
 });

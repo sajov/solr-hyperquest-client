@@ -20,7 +20,7 @@ var DEBUG = false;
  * DEFAUTLS
  */
 
-var extendedQuery = '&fl=*&start=0&rows=30';
+var extendedQuery = '&start=0&rows=30&fl=*';
 var defaults = {
     where: '*:*',
     select: '*',
@@ -122,8 +122,9 @@ var test = [{
             }
         }
     }, {
-        test: 'q=*:*&sort=name desc',
+        test: 'q=*:*',
         desc: 'test simple sort',
+        extendedQuery: '&start=0&rows=30&sort=name desc&fl=*',
         query: {
             where: {},
             sort: {
@@ -301,9 +302,9 @@ var test = [{
             where: 'foo'
         }
     }, {
-        test: 'q=!name:"sajo"&fl=name',
+        test: 'q=!name:"sajo"',
         desc: ' not and select',
-        extendedQuery: '&start=0&rows=30',
+        extendedQuery: '&start=0&rows=30&fl=name',
         query: {
             where: {
                 name: {
@@ -611,8 +612,9 @@ var test = [{
 
 
     {
-        test: 'q=name:"foo"&sort=name asc',
+        test: 'q=name:"foo"',
         desc: 'sort with 1 as asc',
+        extendedQuery: '&start=0&rows=30&sort=name asc&fl=*',
         query: {
             where: {
                 name: 'foo'
@@ -624,8 +626,9 @@ var test = [{
     },
 
     {
-        test: 'q=name:"foo"&sort=name desc',
+        test: 'q=name:"foo"',
         desc: 'sort with -1 as desc',
+        extendedQuery: '&start=0&rows=30&sort=name desc&fl=*',
         query: {
             where: {
                 name: 'foo'
@@ -635,15 +638,17 @@ var test = [{
             }
         }
     }, {
-        test: 'q="foo"&sort=name desc',
+        test: 'q="foo"',
         desc: 'sort as complete string ',
+        extendedQuery: '&start=0&rows=30&sort=name desc&fl=*',
         query: {
             where: 'foo',
             sort: 'name desc'
         }
     }, {
-        test: 'q=name:"foo"&sort=name asc,age desc',
+        test: 'q=name:"foo"',
         desc: 'sort multiple ',
+        extendedQuery: '&start=0&rows=30&sort=name asc,age desc&fl=*',
         query: {
             where: {
                 name: 'foo'
@@ -654,9 +659,9 @@ var test = [{
             }
         }
     }, {
-        test: 'q=name:"foo"&fl=name',
+        test: 'q=name:"foo"',
         desc: ' test SELECT as array',
-        extendedQuery: '&start=0&rows=30',
+        extendedQuery: '&start=0&rows=30&fl=name',
         query: {
             where: {
                 name: 'foo'
@@ -679,8 +684,9 @@ var test = [{
             // select: ['name']
         }
     }, {
-        test: 'q=name:"foo" AND model:"modelA"&fq=model:"modelA"',
+        test: 'q=name:"foo" AND model:"modelA"',
         desc: ' test Or Pairs COMPLEX multivalue on same field',
+        extendedQuery: '&start=0&rows=30&fq=model:"modelA"&fl=*',
         query: {
             where: {
                 name: 'foo',
