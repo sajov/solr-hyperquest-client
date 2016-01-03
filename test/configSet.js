@@ -60,53 +60,53 @@ describe('Test configSet', function() {
                 });
         });
     });
-    // describe('configSet list', function() {
-    //     this.timeout(5000);
-    //     it('responseHeader should return status:0', function(done) {
-    //                 // 'configSetProp.name':value
-    //         client.configSets({
-    //                 action: 'LIST',
-    //             },
-    //             function(err, data) {
-    //                 console.log('configSet list'.yellow, err, inspect(data));
-    //                 // data.responseHeader.status.should.be.equal(0);
-    //                 // data.core.should.be.equal('schemaless');
-    //                 done();
-    //             });
-    //     });
-    // });
+    describe('configSet list', function() {
+        this.timeout(5000);
+        it('responseHeader should return status:0', function(done) {
+                    // 'configSetProp.name':value
+            client.configSets({
+                    action: 'LIST',
+                },
+                function(err, data) {
+                    console.log('configSet list'.yellow, err, inspect(data));
+                    // data.responseHeader.status.should.be.equal(0);
+                    // data.core.should.be.equal('schemaless');
+                    done();
+                });
+        });
+    });
 
 
-    // describe('configSet create',  function() {
-    //     it('responseHeader should return status:0', function(done) {
-    //                 // 'configSetProp.name':value
-    //         client.configSets({
-    //                 action: 'CREATE',
-    //                 name: 'myNewConfig',
-    //                 baseConfigSet: 'data_driven_schema_configs',
-    //                 // 'configSetProp.name':value
-    //             },
-    //             function(err, data) {
-    //                 console.log('configSet create'.yellow, err, inspect(data));
-    //                 // data.responseHeader.status.should.be.equal(0);
-    //                 // data.core.should.be.equal('schemaless');
-    //                 done();
-    //             });
-    //     });
-    // });
+    describe('configSet create',  function() {
+        it('responseHeader should return status:0', function(done) {
+                    // 'configSetProp.name':value
+            client.configSets({
+                    action: 'CREATE',
+                    name: 'myNewConfig',
+                    baseConfigSet: 'data_driven_schema_configs',
+                    // 'configSetProp.name':value
+                },
+                function(err, data) {
+                    console.log('configSet create'.yellow, err, inspect(data));
+                    // data.responseHeader.status.should.be.equal(0);
+                    // data.core.should.be.equal('schemaless');
+                    done();
+                });
+        });
+    });
 
-    // describe('Client coreUnload schemaless', function() {
-    //     it('responseHeader should return status:0', function(done) {
-    //         client.coreUnload({
-    //                 action: 'UNLOAD',
-    //                 'core': 'schemaless',
-    //                 'deleteIndex': true
-    //             },
-    //             function(err, data) {
-    //                 // console.log('coreUnload'.yellow,err,inspect(data));
-    //                 data.responseHeader.status.should.be.equal(0);
-    //                 done();
-    //             });
-    //     });
-    // });
+    describe('Client coreUnload schemaless', function() {
+        it('responseHeader should return status:0', function(done) {
+            client.coreUnload({
+                    action: 'UNLOAD',
+                    'core': 'schemaless',
+                    'deleteIndex': true
+                },
+                function(err, data) {
+                    // console.log('coreUnload'.yellow,err,inspect(data));
+                    data.responseHeader.status.should.be.equal(0);
+                    done();
+                });
+        });
+    });
 });
