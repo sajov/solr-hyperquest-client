@@ -82,35 +82,87 @@ describe('Client query', function() {
                 }
             });
             client.find(query.queryUri, function(err, data) {
-                data.response.numFound.should.be.equal(3);
+
+                data.response.numFound.should.be.equal(1);
                 done();
             });
         });
     });
 
     describe('Query ', function() {
-        it('{where:{q:[foo, bar]}} => q=foo bar | shoud return 3 docs', function(done) {
+        it('{where:{q:[foo, bar]}} => q=foo bar | shoud return 1 docs', function(done) {
             var query = new Query({
                 where: {
                     q: ['foo', 'bar']
                 }
             });
             client.find(query.queryUri, function(err, data) {
-                data.response.numFound.should.be.equal(3);
+              // console.log(data);
+                data.response.numFound.should.be.equal(1);
                 done();
             });
         });
     });
 
     describe('Query ', function() {
-        it('{where:{q:[foo, super bar]}} => q=foo "super bar | shoud return 3 docs"', function(done) {
+        it('{where:{q:[foo, super bar]}} => q=foo "super bar | shoud return 0 docs"', function(done) {
             var query = new Query({
                 where: {
                     q: ['foo', 'super bar']
                 }
             });
             client.find(query.queryUri, function(err, data) {
+              // console.log(data);
+                data.response.numFound.should.be.equal(0);
+                done();
+            });
+        });
+    });
+
+
+
+    describe('Query ', function() {
+        it('{where:{or:[foo, super bar]}} => q=foo "super bar | shoud return 3 docs"', function(done) {
+            var query = new Query({
+                where: {
+                    or: ['foo', 'super bar']
+                },
+            });
+            client.find(query.queryUri, function(err, data) {
+              // console.log(data);
                 data.response.numFound.should.be.equal(3);
+                done();
+            });
+        });
+    });
+
+
+    describe('Query ', function() {
+        it('{where:{or:[foo, super bar]}} => q=foo "super bar | shoud return 3 docs"', function(done) {
+            var query = new Query({
+                where: {
+                    or: ['foo', 'bar', 'super']
+                },
+            });
+            client.find(query.queryUri, function(err, data) {
+              // console.log(data);
+                data.response.numFound.should.be.equal(3);
+                done();
+            });
+        });
+    });
+
+
+    describe('Query ', function() {
+        it('{where:{or:[foo, super bar]}} => q=foo "super bar | shoud return 2 docs"', function(done) {
+            var query = new Query({
+                where: {
+                    or: ['foo bar', 'super bar']
+                },
+            });
+            client.find(query.queryUri, function(err, data) {
+              // console.log(data);
+                data.response.numFound.should.be.equal(2);
                 done();
             });
         });

@@ -18,7 +18,7 @@ describe('solr-hyperquest-client test/', function() {
             host: 'localhost',
             port: '8983',
             instance: 'solr',
-            core: 'schemaless'
+            core: 'schemaless',
         });
     });
 
@@ -36,6 +36,14 @@ describe('solr-hyperquest-client test/', function() {
     importTest("systemApi.js", './systemApi');
 
     importTest("replicationApi.js", './replicationApi');
+
+    importTest("config.js", './config');
+
+    importTest("configSet.js", './configSet');
+
+    importTest("configApi.js", './configApi');
+
+    importTest("suggestSpellcheck.js", './suggestSpellcheck');
 
     //TODO: add sharding test
     // importTest("shardingApi.js", './shardingApi');
