@@ -90,26 +90,26 @@ describe('Client ', function() {
     });
 
 
-    describe('addDoc many docs', function() {
+    // describe('addDoc many docs', function() {
 
-        for (var i = 0; i < 1000; i++) {
-            var doc = {
-                name: 'test_' + i,
-                age: 34
-            };
-            it('responseHeader should return status:0', function(done) {
-                client.addDoc({
-                    commit: true
-                        // softCommit: true
-                }, [doc], function(err, data) {
-                    data.responseHeader.status.should.be.equal(0);
-                    done();
-                });
+    //     for (var i = 0; i < 1000; i++) {
+    //         var doc = {
+    //             name: 'test_' + i,
+    //             age: 34
+    //         };
+    //         it('responseHeader should return status:0', function(done) {
+    //             client.addDoc({
+    //                 commit: true
+    //                     // softCommit: true
+    //             }, [doc], function(err, data) {
+    //                 data.responseHeader.status.should.be.equal(0);
+    //                 done();
+    //             });
 
-            });
+    //         });
 
-        }
-    });
+    //     }
+    // });
 
     describe('coreUnload schemaless', function() {
         it('responseHeader should return status:0', function(done) {
